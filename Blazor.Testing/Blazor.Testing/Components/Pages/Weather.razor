@@ -1,0 +1,19 @@
+﻿@page "/weather"
+@inject IWeatherForecastService WeatherForecastService
+@attribute [StreamRendering]
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<ForecastTable Forecasts="_forecasts" />
+
+@code 
+{
+    private IEnumerable<WeatherForecast> _forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _forecasts = await WeatherForecastService.GetForecastAsync();
+    }
+}

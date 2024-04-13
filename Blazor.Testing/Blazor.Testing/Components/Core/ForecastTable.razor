@@ -1,0 +1,28 @@
+﻿@inject IUselessService UselessService
+
+@if (Forecasts is null)
+{
+    <p>Loading..</p>    
+}
+else
+{
+    <MudTable Items="@Forecasts" Hover="true">
+        <HeaderContent>
+            <MudTh>Date</MudTh>
+            <MudTh>Temp. (C)</MudTh>
+            <MudTh>Temp. (F)</MudTh>
+            <MudTh>Summary</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Date">@context.Date</MudTd>
+            <MudTd DataLabel="Temp. (C)">@context.TemperatureC</MudTd>
+            <MudTd DataLabel="Temp. (F)">@context.TemperatureF</MudTd>
+            <MudTd DataLabel="Summary">@context.Summary</MudTd>
+        </RowTemplate>
+    </MudTable>
+}
+
+@code
+{
+    [Parameter] public IEnumerable<WeatherForecast> Forecasts { get; set; }
+}
