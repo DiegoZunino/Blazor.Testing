@@ -1,7 +1,7 @@
 namespace Blazor.Testing.Tests.Components.Pages;
 
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class CounterTest : TestContext
+public class ComplexCounterTest : TestContext
 {
     private readonly IJSRuntime _jsRuntimeMock = Substitute.For<IJSRuntime>();
     private readonly IJSObjectReference _jsObjectReferenceMock = Substitute.For<IJSObjectReference>();
@@ -18,8 +18,9 @@ public class CounterTest : TestContext
     public async Task WhenButtonIsClickedThreeTimes_Should_InvokeAlertService()
     {
         // Act
-        var cut = RenderComponent<Counter>();
+        var cut = RenderComponent<ComplexCounter>();
         var increaseCounterButton = cut.Find("button");
+        increaseCounterButton.Click();
         increaseCounterButton.Click();
         increaseCounterButton.Click();
         increaseCounterButton.Click();
@@ -27,7 +28,7 @@ public class CounterTest : TestContext
         // Assert
         var currentCounterContent = cut.Find("p[role='status']");
         
-        Assert.That(currentCounterContent.TextContent, Is.EqualTo("Current count: 3"));
+        Assert.That(currentCounterContent.TextContent, Is.EqualTo("Current count: 4"));
         await _jsObjectReferenceMock.Received(1).InvokeVoidAsync("showAlert", Arg.Is<object[]>(x => x.Contains("Counter is now 3!")));
     }
 }
