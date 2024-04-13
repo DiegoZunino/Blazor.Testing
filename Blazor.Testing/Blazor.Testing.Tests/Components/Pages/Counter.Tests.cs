@@ -18,7 +18,7 @@ public class CounterTest : TestContext
     public async Task WhenButtonIsClickedThreeTimes_Should_InvokeAlertService()
     {
         // Act
-        var cut = RenderComponent<ComplexCounter>();
+        var cut = RenderComponent<Counter>();
         var increaseCounterButton = cut.Find("button");
         increaseCounterButton.Click();
         increaseCounterButton.Click();

@@ -1,5 +1,6 @@
-﻿@page "/counter"
+﻿@page "/complex-counter"
 @rendermode InteractiveServer
+@inject IJSRuntime JsRuntime
 
 <PageTitle>Counter</PageTitle>
 
@@ -12,9 +13,23 @@
 @code 
 {
     private int _currentCount = 0;
+    private IJSObjectReference _jsModule;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _jsModule = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "/alerts.js");
+        }
+    }
 
-    private void IncrementCount()
+    private async Task IncrementCount()
     {
         _currentCount++;
+
+        if (_currentCount == 3)
+        {
+            await _jsModule.InvokeVoidAsync("showAlert", "Counter is now 3!");
+        }
     }
 }
