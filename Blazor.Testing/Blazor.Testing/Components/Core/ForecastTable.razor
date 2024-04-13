@@ -1,28 +1,37 @@
-﻿@inject IUselessService UselessService
+﻿@inject ITemperatureConverterService TemperatureConverterService
 
-@if (Forecasts is null)
+@if (Forecasts == null)
 {
-    <p>Loading..</p>    
+<p>
+    <em>Loading...</em>
+</p>
 }
 else
 {
-    <MudTable Items="@Forecasts" Hover="true">
-        <HeaderContent>
-            <MudTh>Date</MudTh>
-            <MudTh>Temp. (C)</MudTh>
-            <MudTh>Temp. (F)</MudTh>
-            <MudTh>Summary</MudTh>
-        </HeaderContent>
-        <RowTemplate>
-            <MudTd DataLabel="Date">@context.Date</MudTd>
-            <MudTd DataLabel="Temp. (C)">@context.TemperatureC</MudTd>
-            <MudTd DataLabel="Temp. (F)">@context.TemperatureF</MudTd>
-            <MudTd DataLabel="Summary">@context.Summary</MudTd>
-        </RowTemplate>
-    </MudTable>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in Forecasts)
+        {
+            <tr>
+                <td>@forecast.Date.ToShortDateString()</td>
+                <td>@forecast.TemperatureC</td>
+                <td>@TemperatureConverterService.ConvertTemperatureToF(forecast.TemperatureC)</td>
+                <td>@forecast.Summary</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 }
 
-@code
+@code 
 {
-    [Parameter] public IEnumerable<WeatherForecast> Forecasts { get; set; }
+    [Parameter] public IEnumerable<WeatherForecast> Forecasts { get; set; }    
 }

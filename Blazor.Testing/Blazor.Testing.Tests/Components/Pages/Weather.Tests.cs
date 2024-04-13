@@ -30,10 +30,6 @@ public class WeatherTests : TestContext
     [Test]
     public void ComponentRetrievesWeatherForecastData()
     {
-        // Arrange
-        var forecasts = new List<WeatherForecast> { new () };
-        _weatherForecastService.GetForecastAsync().Returns(forecasts);
-
         // Act
         RenderComponent<Weather>();
 

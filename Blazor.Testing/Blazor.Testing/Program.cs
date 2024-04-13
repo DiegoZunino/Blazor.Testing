@@ -1,6 +1,5 @@
 using Blazor.Testing.Components;
 using Blazor.Testing.Services;
-using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,10 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddMudServices();
-
 builder.Services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
-builder.Services.AddSingleton<IUselessService, UselessService>();
+builder.Services.AddSingleton<ITemperatureConverterService, TemperatureConverterService>();
 
 var app = builder.Build();
 

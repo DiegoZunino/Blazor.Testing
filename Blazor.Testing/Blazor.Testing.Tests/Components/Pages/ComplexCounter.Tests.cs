@@ -15,7 +15,7 @@ public class CounterTest : TestContext
     }
     
     [Test]
-    public async Task CounterIntegrationTest()
+    public async Task WhenButtonIsClickedThreeTimes_Should_InvokeAlertService()
     {
         // Act
         var cut = RenderComponent<ComplexCounter>();
