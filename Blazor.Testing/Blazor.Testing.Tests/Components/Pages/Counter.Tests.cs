@@ -1,7 +1,9 @@
+using Counter = Blazor.Testing.Components.Pages.Counter;
+
 namespace Blazor.Testing.Tests.Components.Pages;
 
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class ComplexCounterTest : TestContext
+public class CounterTest : TestContext
 {
     private readonly IJSRuntime _jsRuntimeMock = Substitute.For<IJSRuntime>();
     private readonly IJSObjectReference _jsObjectReferenceMock = Substitute.For<IJSObjectReference>();
@@ -18,7 +20,7 @@ public class ComplexCounterTest : TestContext
     public void WhenButtonIsClicked_Should_IncrementCurrentCount()
     {
         // Act
-        var cut = RenderComponent<ComplexCounter>();
+        var cut = RenderComponent<Counter>();
         var increaseCounterButton = cut.Find("button");
         increaseCounterButton.Click();
         
@@ -31,7 +33,7 @@ public class ComplexCounterTest : TestContext
     public async Task WhenButtonIsClickedThreeTimes_Should_InvokeAlertService()
     {
         // Act
-        var cut = RenderComponent<ComplexCounter>();
+        var cut = RenderComponent<Counter>();
         var increaseCounterButton = cut.Find("button");
         increaseCounterButton.Click();
         increaseCounterButton.Click();
@@ -45,7 +47,7 @@ public class ComplexCounterTest : TestContext
     public void WhenButtonIsClickedMoreThenThreeTimes_Should_ContinueIncrementCurrentCount()
     {
         // Act
-        var cut = RenderComponent<ComplexCounter>();
+        var cut = RenderComponent<Counter>();
         var increaseCounterButton = cut.Find("button");
         increaseCounterButton.Click();
         increaseCounterButton.Click();

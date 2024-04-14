@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Testing", "Blazor.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Testing.Tests", "Blazor.Testing.Tests\Blazor.Testing.Tests.csproj", "{506C183E-56E1-444E-BDC6-7CA75B12347C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Testing.IntegrationTests", "Blazor.Testing.IntegrationTests\Blazor.Testing.IntegrationTests.csproj", "{EBEC1A5E-222E-48C7-9C86-0DBC14C06314}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{506C183E-56E1-444E-BDC6-7CA75B12347C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{506C183E-56E1-444E-BDC6-7CA75B12347C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{506C183E-56E1-444E-BDC6-7CA75B12347C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBEC1A5E-222E-48C7-9C86-0DBC14C06314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBEC1A5E-222E-48C7-9C86-0DBC14C06314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBEC1A5E-222E-48C7-9C86-0DBC14C06314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBEC1A5E-222E-48C7-9C86-0DBC14C06314}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

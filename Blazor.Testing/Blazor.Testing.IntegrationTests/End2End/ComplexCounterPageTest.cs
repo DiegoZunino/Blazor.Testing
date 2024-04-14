@@ -1,4 +1,4 @@
-namespace Blazor.Testing.Tests.End2End;
+namespace Blazor.Testing.IntegrationTests.End2End;
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
@@ -8,7 +8,7 @@ internal class ComplexCounterPageTest : BlazorPageTest<Program>
     public async Task WhenButtonIsClickedMoreThenThreeTimes_Should_ContinueIncrementCurrentCount()
     {
         // Arrange
-        await Page.GotoPreRenderedAsync("complex-counter");
+        await Page.GotoPreRenderedAsync("counter");
 
         //Act
         var button = Page.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { Name = "Click me" });

@@ -1,4 +1,4 @@
-﻿namespace Blazor.Testing.Tests.Utils;
+﻿namespace Blazor.Testing.IntegrationTests.Utils;
 
 public static class BlazorPageExtensions
 {

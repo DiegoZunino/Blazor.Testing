@@ -1,4 +1,4 @@
-namespace Blazor.Testing.Tests.End2End;
+namespace Blazor.Testing.IntegrationTests.End2End;
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
@@ -16,7 +16,7 @@ internal class ComplexCounterPageTraceTest : BlazorPageTest<Program>
         });
 
         // Act
-        await Page.GotoPreRenderedAsync("complex-counter");
+        await Page.GotoPreRenderedAsync("counter");
         var button = Page.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { Name = "Click me" });
         await button.ClickAsync();
         await button.ClickAsync();

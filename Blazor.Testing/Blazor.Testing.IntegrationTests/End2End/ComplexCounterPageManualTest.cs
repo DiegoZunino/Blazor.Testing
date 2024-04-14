@@ -1,4 +1,4 @@
-namespace Blazor.Testing.Tests.End2End;
+namespace Blazor.Testing.IntegrationTests.End2End;
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
@@ -32,7 +32,7 @@ internal class ComplexCounterPageManualTest
         // This is needed when pre-rendering is enabled and using Blazor Server,
         // since the page is not interactive until the SignalR connection to the
         // backend has been established.
-        await page.GotoAsync("complex-counter", new() { WaitUntil = WaitUntilState.NetworkIdle });
+        await page.GotoAsync("counter", new() { WaitUntil = WaitUntilState.NetworkIdle });
 
         // Act
         var button = page.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { Name = "Click me" });

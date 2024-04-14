@@ -1,4 +1,4 @@
-﻿namespace Blazor.Testing.Tests.Utils;
+﻿namespace Blazor.Testing.IntegrationTests.Utils;
 
 public class BlazorPageTest<TProgram> : BrowserTest where TProgram : class
 {
