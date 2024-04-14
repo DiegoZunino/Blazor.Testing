@@ -42,7 +42,7 @@ public class ComplexCounterTest : TestContext
     }
     
     [Test]
-    public void WhenButtonIsClickedMoreThenThreeTimes_Should_ContinueaIncrementCurrentCount()
+    public void WhenButtonIsClickedMoreThenThreeTimes_Should_ContinueIncrementCurrentCount()
     {
         // Act
         var cut = RenderComponent<ComplexCounter>();
