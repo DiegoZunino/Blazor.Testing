@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Playwright;
-using Microsoft.Playwright.NUnit;
-
-namespace Blazor.Testing.Tests.Utils;
+﻿namespace Blazor.Testing.Tests.Utils;
 
 public class BlazorPageTest<TProgram> : BrowserTest where TProgram : class
 {

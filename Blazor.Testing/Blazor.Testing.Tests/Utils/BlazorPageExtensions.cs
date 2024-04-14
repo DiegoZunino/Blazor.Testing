@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.Playwright;
-
-namespace Blazor.Testing.Tests.Utils;
+﻿namespace Blazor.Testing.Tests.Utils;
 
 public static class BlazorPageExtensions
 {

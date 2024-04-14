@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.Hosting;
-
-namespace Blazor.Testing.Tests.Utils;
+﻿namespace Blazor.Testing.Tests.Utils;
 
 public class BlazorApplicationFactory<TProgram> : WebApplicationFactory<TProgram> where TProgram : class
 {
@@ -35,7 +29,7 @@ public class BlazorApplicationFactory<TProgram> : WebApplicationFactory<TProgram
         _configureWebHost?.Invoke(builder);        
 
         // Setting port to 0 means that Kestrel will pick any free a port.
-        builder.UseUrls("http://127.0.0.1:0");
+        builder.UseUrls("https://127.0.0.1:0");
     }
 
     protected override IHost CreateHost(IHostBuilder builder)
