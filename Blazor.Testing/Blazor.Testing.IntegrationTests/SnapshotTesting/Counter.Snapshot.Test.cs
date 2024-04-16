@@ -5,20 +5,13 @@
 internal class CounterSnapshotTest : BlazorPageTest<Program>
 {
     [Test]
-    public async Task OnPageInitialization_Verify()
+    public async Task OnPageInitialization_VerifyPageContent()
     {
         // Arrange
         await Page.GotoPreRenderedAsync("counter");
 
-        // Verify page content only semantically
-        // string html = await Page.ContentAsync();
-        //await Verify(html, "html");
-
-        // Verify page and create screenshot
-        await Verify(Page).PageScreenshotOptions(new()
-        {
-            Quality = 50,
-            Type = ScreenshotType.Jpeg,
-        });
+        // Verify
+        await Verify(await Page.ContentAsync(), "html");
+        //    .PageScreenshotOptions(new PageScreenshotOptions { Quality = 50, Type = ScreenshotType.Jpeg });
     }
 }
