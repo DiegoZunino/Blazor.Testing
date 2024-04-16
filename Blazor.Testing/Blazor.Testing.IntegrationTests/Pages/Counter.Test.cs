@@ -10,7 +10,7 @@ internal class CounterTest : BlazorPageTest<Program>
         // Arrange
         await Page.GotoPreRenderedAsync("counter");
 
-        //Act
+        // Act
         var button = Page.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { Name = "Click me" });
         await button.ClickAsync();
         await button.ClickAsync();

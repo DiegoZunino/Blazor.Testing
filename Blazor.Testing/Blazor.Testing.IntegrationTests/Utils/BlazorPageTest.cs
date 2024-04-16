@@ -20,8 +20,10 @@ public class BlazorPageTest<TProgram> : BrowserTest where TProgram : class
     protected virtual void ConfigureWebHost(IWebHostBuilder builder) { }
 
     [SetUp]
-    public async Task PageSetup()
+    public async Task Setup()
     {
+        VerifyPlaywright.Initialize();
+        
         var options = ContextOptions() ?? new BrowserNewContextOptions();
         options.BaseURL = Host.ServerAddress;
         options.IgnoreHTTPSErrors = true;
