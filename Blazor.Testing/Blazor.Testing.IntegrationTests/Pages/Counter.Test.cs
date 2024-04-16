@@ -1,8 +1,8 @@
-namespace Blazor.Testing.IntegrationTests.End2End;
+namespace Blazor.Testing.IntegrationTests.Pages;
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
-internal class ComplexCounterPageTest : BlazorPageTest<Program>
+internal class CounterTest : BlazorPageTest<Program>
 {
     [Test]
     public async Task WhenButtonIsClickedMoreThenThreeTimes_Should_ContinueIncrementCurrentCount()

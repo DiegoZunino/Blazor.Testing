@@ -1,8 +1,8 @@
-namespace Blazor.Testing.IntegrationTests.End2End;
+namespace Blazor.Testing.IntegrationTests.Pages;
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
-internal class ComplexCounterPageTraceTest : BlazorPageTest<Program>
+internal class CounterTracingTest : BlazorPageTest<Program>
 {
     [Test]
     public async Task WhenButtonIsClickedMoreThenThreeTimes_Should_ContinueIncrementCurrentCount()
@@ -34,6 +34,6 @@ internal class ComplexCounterPageTraceTest : BlazorPageTest<Program>
         });
 
         // View trace:
-        // .\Blazor.Testing.Tests\bin\Debug\net8.0\playwright.ps1 show-trace .\BlazorTestingAZ.Tests\bin\Debug\net8.0\Count_Increments_WhenButtonIsClicked.trace.zip
+        // pwsh ./Blazor.Testing.IntegrationTests/bin/Debug/net8.0/playwright.ps1 show-trace ./Blazor.Testing.IntegrationTests/bin/Debug/net8.0/WhenButtonIsClickedMoreThenThreeTimes_Should_ContinueIncrementCurrentCount.trace.zip
     }
 }

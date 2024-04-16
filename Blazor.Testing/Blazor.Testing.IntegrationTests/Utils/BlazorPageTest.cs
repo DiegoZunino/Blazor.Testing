@@ -3,12 +3,10 @@
 public class BlazorPageTest<TProgram> : BrowserTest where TProgram : class
 {
     private BlazorApplicationFactory<TProgram> _host;
-
-    public IBrowserContext Context { get; private set; } = null!;
-
-    public IPage Page { get; private set; } = null!;
-
-    public BlazorApplicationFactory<TProgram> Host
+    protected IBrowserContext Context { get; private set; } = null!;
+    protected IPage Page { get; private set; } = null!;
+    
+    private BlazorApplicationFactory<TProgram> Host
     {
         get
         {
@@ -17,10 +15,8 @@ public class BlazorPageTest<TProgram> : BrowserTest where TProgram : class
         }
     }
 
-    public virtual BlazorApplicationFactory<TProgram> CreateHostFactory() => new(ConfigureWebHost);
-
-    public virtual BrowserNewContextOptions ContextOptions() => null!;
-
+    protected virtual BlazorApplicationFactory<TProgram> CreateHostFactory() => new (ConfigureWebHost);
+    protected virtual BrowserNewContextOptions ContextOptions() => null!;
     protected virtual void ConfigureWebHost(IWebHostBuilder builder) { }
 
     [SetUp]
@@ -29,7 +25,7 @@ public class BlazorPageTest<TProgram> : BrowserTest where TProgram : class
         var options = ContextOptions() ?? new BrowserNewContextOptions();
         options.BaseURL = Host.ServerAddress;
         options.IgnoreHTTPSErrors = true;
-
+        
         Context = await NewContext(options).ConfigureAwait(false);
         Page = await Context.NewPageAsync().ConfigureAwait(false);
     }
@@ -40,10 +36,6 @@ public class BlazorPageTest<TProgram> : BrowserTest where TProgram : class
         if (_host is { } currentHost)
         {
             _host = null;
-
-            // Navigate to about:blank to ensure any SignalR
-            // connections are dropped.
-            //await Page.GotoAsync("about:blank");
             await Context.DisposeAsync().ConfigureAwait(false);
             await currentHost.DisposeAsync().ConfigureAwait(false);
         }

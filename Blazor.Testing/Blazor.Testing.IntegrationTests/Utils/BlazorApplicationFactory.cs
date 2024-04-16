@@ -27,19 +27,13 @@ public class BlazorApplicationFactory<TProgram> : WebApplicationFactory<TProgram
     {
         base.ConfigureWebHost(builder);
         _configureWebHost?.Invoke(builder);        
-
-        // Setting port to 0 means that Kestrel will pick any free a port.
-        builder.UseUrls("https://127.0.0.1:0");
+        builder.UseUrls("https://127.0.0.1:0"); // Kestrel will select any free port.
     }
 
     protected override IHost CreateHost(IHostBuilder builder)
     {
-        // Create the host for TestServer now before we modify the builder to use Kestrel instead.
-        var testHost = builder.Build();
-
-        // Modify the host builder to use Kestrel instead of TestServer, so we can listen on a real address.    
-        // configure and start the actual host using Kestrel.
-        builder.ConfigureWebHost(webHostBuilder => webHostBuilder.UseKestrel());
+        var testHost = builder.Build(); // Create the host for TestServer
+        builder.ConfigureWebHost(webHostBuilder => webHostBuilder.UseKestrel()); // Use Kestrel instead of TestServer
 
         // Create and start the Kestrel server before the test server,  
         // otherwise due to the way the deferred host builder works    
@@ -48,11 +42,7 @@ public class BlazorApplicationFactory<TProgram> : WebApplicationFactory<TProgram
         // See https://github.com/dotnet/aspnetcore/issues/33846.    
         _host = builder.Build();
         _host.Start();
-
-        // Extract the selected dynamic port out of the Kestrel server  
-        // and assign it onto the client options for convenience so it    
-        // "just works" as otherwise it'll be the default http://localhost    
-        // URL, which won't route to the Kestrel-hosted HTTP server.     
+        
         var server = _host.Services.GetRequiredService<IServer>();
         var addresses = server.Features.Get<IServerAddressesFeature>();
         ClientOptions.BaseAddress = addresses!.Addresses.Select(x => new Uri(x)).Last();
@@ -69,7 +59,6 @@ public class BlazorApplicationFactory<TProgram> : WebApplicationFactory<TProgram
     {
         if (_host is null)
         {
-            // This forces WebApplicationFactory to bootstrap the server  
             using var _ = CreateDefaultClient();
         }
     }
