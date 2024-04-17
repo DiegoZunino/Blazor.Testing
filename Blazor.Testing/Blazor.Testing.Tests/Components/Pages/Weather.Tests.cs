@@ -12,8 +12,6 @@ public class WeatherTests : TestContext
     [SetUp]
     public void Setup()
     {
-        Services.AddSingleton(_weatherForecastService);
-        
         #region Component Factories
         
         ComponentFactories.AddStub<ForecastTable>();
@@ -25,6 +23,9 @@ public class WeatherTests : TestContext
     [Test]
     public void ComponentRendersCorrectly()
     {
+        // Arrange
+        Services.AddSingleton(_weatherForecastService);
+        
         // Act
         var cut = RenderComponent<Weather>();
 
@@ -36,6 +37,9 @@ public class WeatherTests : TestContext
     [Test]
     public void ComponentRetrievesWeatherForecastData()
     {
+        // Arrange
+        Services.AddSingleton(_weatherForecastService);
+        
         // Act
         RenderComponent<Weather>();
 
@@ -47,8 +51,9 @@ public class WeatherTests : TestContext
     public void ComponentPassesRetrievedForecastsToTable()
     {
         // Arrange
-        var forecasts = new List<WeatherForecast> { new () };
+        List<WeatherForecast> forecasts = [new WeatherForecast { Date = DateOnly.FromDateTime(DateTime.Now), TemperatureC = 19, Summary = "Chill"}];
         _weatherForecastService.GetForecastAsync().Returns(forecasts);
+        Services.AddSingleton(_weatherForecastService);
 
         // Act
         var cut = RenderComponent<Weather>();
