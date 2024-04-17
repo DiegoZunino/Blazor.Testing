@@ -13,7 +13,13 @@ public class WeatherTests : TestContext
     public void Setup()
     {
         Services.AddSingleton(_weatherForecastService);
+        
+        #region Component Factories
+        
         ComponentFactories.AddStub<ForecastTable>();
+        
+        #endregion
+        
     }
 
     [Test]
